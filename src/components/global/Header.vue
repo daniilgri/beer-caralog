@@ -1,8 +1,5 @@
-<script lang="ts">
-import Vue from "vue";
-
-export default Vue.extend({
-  template: `<header class="header">
+<template>
+  <header class="header">
     <div class="header__inner">
       <button class="header__button sidebar-button">
         <svg viewBox="0 0 100 70" class="sidebar-button__svg">
@@ -14,20 +11,24 @@ export default Vue.extend({
       <h2 class="header__title">Beer catalog</h2>
       <button class="header__button dropdown-button">
         <svg viewBox="0 0 16 16" class="dropdown-button__svg">
-          <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+          <path
+            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+          />
         </svg>
       </button>
     </div>
-  </header>`
-});
-</script>
+  </header>
+</template>
 
 <style lang="scss">
-.header {
-  $headerTitleColor: white;
+$headerBackgroundColor: #42a5f5;
+$headerTitleColor: white;
+$sidebarButtonWhiteThemeColor: white;
+$dropdownButtonWhiteThemeColor: white;
 
+.header {
   width: 100%;
-  background-color: #42a5f5;
+  background-color: $headerBackgroundColor;
 
   &__inner {
     padding: 0 1%;
@@ -51,7 +52,6 @@ export default Vue.extend({
 }
 
 .sidebar-button {
-  $sidebarButtonWhiteThemeColor: white;
   height: 18px;
 
   &__svg {
@@ -62,7 +62,6 @@ export default Vue.extend({
 }
 
 .dropdown-button {
-  $dropdownButtonWhiteThemeColor: white;
   margin-left: auto;
   height: 28px;
 
