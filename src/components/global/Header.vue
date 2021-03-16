@@ -29,6 +29,7 @@ $dropdownButtonWhiteThemeColor: white;
 .header {
   width: 100%;
   background-color: $headerBackgroundColor;
+  padding: 15px 0;
 
   &__inner {
     padding: 0 1%;
