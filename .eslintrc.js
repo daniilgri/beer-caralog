@@ -19,5 +19,5 @@ module.exports = {
     "eslint:recommended",
     "@vue/prettier",
     "@vue/typescript"
-  ],
+  ]
 };
