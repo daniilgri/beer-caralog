@@ -34,6 +34,7 @@
 $sidebarBackgroundColor: white;
 $sidebarTitleColor: white;
 $headerLinkDefaultColor: gray;
+$root: ".sidebar";
 
 .sidebar {
   height: 100%;
@@ -77,6 +78,9 @@ $headerLinkDefaultColor: gray;
     margin-bottom: 25px;
     display: flex;
     align-items: center;
+    #{$root}__link:hover {
+      color: #03a9f4;
+    }
   }
 
   &__link {
