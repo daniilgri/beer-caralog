@@ -1,7 +1,10 @@
 <template>
   <header class="header">
     <div class="header__inner">
-      <button class="header__button sidebar-button">
+      <button
+        class="header__button sidebar-button"
+        @click="handleToggleHeaderButtonOnClick"
+      >
         <svg viewBox="0 0 100 70" class="sidebar-button__svg">
           <rect width="100" height="10"></rect>
           <rect y="30" width="100" height="10"></rect>
@@ -73,3 +76,21 @@ $dropdownButtonWhiteThemeColor: white;
   }
 }
 </style>
+
+<script lang="ts">
+import Vue from "vue";
+import { mapMutations } from "vuex";
+import { PostsMutationsTypes } from "../../store/sidebar/mutationTypes";
+
+export default Vue.extend({
+  name: "Header",
+  methods: {
+    ...mapMutations("sidebar", {
+      toggleHeaderStatus: PostsMutationsTypes.TOGGLE
+    }),
+    handleToggleHeaderButtonOnClick() {
+      this.toggleHeaderStatus();
+    }
+  }
+});
+</script>
