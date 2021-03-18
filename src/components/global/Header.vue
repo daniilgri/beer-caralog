@@ -1,33 +1,38 @@
 <template>
   <header class="header">
     <div class="header__inner">
-      <button
-        class="header__button sidebar-button"
-        @click="handleToggleHeaderButtonOnClick"
-      >
-        <svg viewBox="0 0 100 70" class="sidebar-button__svg">
-          <rect width="100" height="10"></rect>
-          <rect y="30" width="100" height="10"></rect>
-          <rect y="60" width="100" height="10"></rect>
-        </svg>
+      <button class="header__button sidebar-button" @click="toggleHeaderStatus">
+        <BurgerMenuIcon />
       </button>
       <h2 class="header__title">Beer catalog</h2>
       <button class="header__button dropdown-button">
-        <svg viewBox="0 0 16 16" class="dropdown-button__svg">
-          <path
-            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
-          />
-        </svg>
+        <DropdownIcon />
       </button>
     </div>
   </header>
 </template>
 
-<style lang="scss">
+<script lang="ts">
+import Vue from "vue";
+import { mapMutations } from "vuex";
+import { SIDEBAR_MUTATION_TYPES } from "../../store/sidebar/mutationTypes";
+import DropdownIcon from "./icons/DropdownIcon.vue";
+import BurgerMenuIcon from "./icons/BurgerMenuIcon.vue";
+
+export default Vue.extend({
+  name: "Header",
+  components: { DropdownIcon, BurgerMenuIcon },
+  methods: {
+    ...mapMutations("sidebar", {
+      toggleHeaderStatus: SIDEBAR_MUTATION_TYPES.TOGGLE
+    })
+  }
+});
+</script>
+
+<style lang="scss" scoped>
 $headerBackgroundColor: #42a5f5;
 $headerTitleColor: white;
-$sidebarButtonWhiteThemeColor: white;
-$dropdownButtonWhiteThemeColor: white;
 
 .header {
   width: 100%;
@@ -57,40 +62,10 @@ $dropdownButtonWhiteThemeColor: white;
 
 .sidebar-button {
   height: 18px;
-
-  &__svg {
-    height: 100%;
-    width: auto;
-    fill: $sidebarButtonWhiteThemeColor;
-  }
 }
 
 .dropdown-button {
   margin-left: auto;
   height: 28px;
-
-  &__svg {
-    height: 100%;
-    width: auto;
-    fill: $dropdownButtonWhiteThemeColor;
-  }
 }
 </style>
-
-<script lang="ts">
-import Vue from "vue";
-import { mapMutations } from "vuex";
-import { PostsMutationsTypes } from "../../store/sidebar/mutationTypes";
-
-export default Vue.extend({
-  name: "Header",
-  methods: {
-    ...mapMutations("sidebar", {
-      toggleHeaderStatus: PostsMutationsTypes.TOGGLE
-    }),
-    handleToggleHeaderButtonOnClick() {
-      this.toggleHeaderStatus();
-    }
-  }
-});
-</script>

@@ -1,10 +1,10 @@
 import { MutationTree } from "vuex";
 
 import { SidebarState } from "./types";
-import { PostsMutationsTypes } from "./mutationTypes";
+import { SIDEBAR_MUTATION_TYPES } from "./mutationTypes";
 
 export const mutations: MutationTree<SidebarState> = {
-  [PostsMutationsTypes.TOGGLE](state) {
+  [SIDEBAR_MUTATION_TYPES.TOGGLE](state) {
     console.log(state);
     state.open = !state.open;
   }

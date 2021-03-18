@@ -1,3 +1,3 @@
-export enum PostsMutationsTypes {
+export enum SIDEBAR_MUTATION_TYPES {
   TOGGLE = "@SIDEBAR/TOGGLE"
 }

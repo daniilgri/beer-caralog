@@ -1,5 +1,5 @@
 <template>
-  <div class="search-filter__field search-field">
+  <div class="search-field">
     <h5 class="search-field__name">
       {{ name }}
     </h5>
@@ -9,10 +9,29 @@
   </div>
 </template>
 
+<script lang="ts">
+import Vue from "vue";
+import Slider from "../../global/Slider.vue";
+
+export default Vue.extend({
+  name: "SearchField",
+  components: { Slider },
+  props: {
+    name: { type: String, required: true },
+    value: { type: Number, required: true }
+  }
+});
+</script>
+
 <style lang="scss" scoped>
 .search-field {
   display: flex;
   align-items: center;
+  margin-bottom: 30px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &__name {
     width: 50%;
@@ -24,23 +43,3 @@
   }
 }
 </style>
-
-<script lang="ts">
-import Vue from "vue";
-import Slider from "../../global/Slider";
-
-export default Vue.extend({
-  name: "SearchField",
-  components: { Slider },
-  props: {
-    name: {
-      type: String,
-      required: true
-    },
-    value: {
-      type: Number,
-      required: true
-    }
-  }
-});
-</script>

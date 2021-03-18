@@ -1,11 +1,19 @@
 <template>
-  <div class="search-section__searchbar searchbar">
+  <div class="searchbar">
     <input type="text" placeholder="Search..." class="searchbar__input" />
     <button class="searchbar__button">
       Search
     </button>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+
+export default Vue.extend({
+  name: "Searchbar"
+});
+</script>
 
 <style lang="scss" scoped>
 $searchbarInputBorderColor: #9e9e9e;
@@ -14,6 +22,7 @@ $searchbarInputBorderColor: #9e9e9e;
   display: flex;
   flex-wrap: nowrap;
   width: 25%;
+  margin-bottom: 30px;
 
   &__input {
     font-size: 18px;
@@ -32,11 +41,3 @@ $searchbarInputBorderColor: #9e9e9e;
   }
 }
 </style>
-
-<script lang="ts">
-import Vue from "vue";
-
-export default Vue.extend({
-  name: "Searchbar"
-});
-</script>

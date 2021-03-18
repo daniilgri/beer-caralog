@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
+import Catalog from "../views/Catalog.vue";
 
 Vue.use(VueRouter);
 
@@ -7,7 +8,7 @@ const routes: Array<RouteConfig> = [
   {
     path: "/",
     name: "Catalog",
-    component: () => import("../views/Catalog.vue")
+    component: Catalog
   }
 ];
 

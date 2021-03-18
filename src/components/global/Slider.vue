@@ -13,6 +13,48 @@
   </div>
 </template>
 
+<script lang="ts">
+import Vue from "vue";
+
+export default Vue.extend({
+  name: "Slider",
+  props: {
+    value: {
+      type: Number,
+      required: true
+    }
+  },
+  methods: {
+    handleSliderLineOnMouseMove(event: MouseEvent) {
+      const { currentTarget } = event;
+      if (currentTarget) {
+        const val =
+          (<number>(<unknown>(<HTMLInputElement>currentTarget).value) -
+            <number>(
+              (<unknown>(<HTMLInputElement>currentTarget).getAttribute("min"))
+            )) /
+          (<number>(
+            (<unknown>(<HTMLInputElement>currentTarget).getAttribute("max"))
+          ) -
+            <number>(
+              (<unknown>(<HTMLInputElement>currentTarget).getAttribute("min"))
+            ));
+
+        const percent = val * 100;
+
+        (<HTMLInputElement>(
+          currentTarget
+        )).style.backgroundImage = `-webkit-gradient(linear, left top, right top, color-stop(${percent}%, #42a5f5),color-stop(${percent}%, #42a5f51f))`;
+
+        (<HTMLInputElement>(
+          currentTarget
+        )).style.backgroundImage = `-moz-linear-gradient(left center, #42a5f5 0%, #42a5f5 ${percent}%, #42a5f51f ${percent}%, #42a5f51f 100%)`;
+      }
+    }
+  }
+});
+</script>
+
 <style lang="scss" scoped>
 .slider {
   display: flex;
@@ -26,7 +68,6 @@
   }
 
   &__line {
-    width-webkit-appearance: none;
     appearance: none;
     width: 85%;
     height: 2px;
@@ -71,39 +112,3 @@
   }
 }
 </style>
-
-<script lang="ts">
-import Vue from "vue";
-
-export default Vue.extend({
-  name: "Slider",
-  props: {
-    value: {
-      type: Number,
-      required: true
-    }
-  },
-  created() {
-    console.log(this.$refs.sliderLine);
-  },
-  methods: {
-    handleSliderLineOnMouseMove($event: {
-      currentTarget: {
-        value: number;
-        getAttribute: (arg0: string) => number;
-        style: { backgroundImage: string };
-      };
-    }) {
-      const val =
-        ($event.currentTarget.value -
-          $event.currentTarget.getAttribute("min")) /
-        ($event.currentTarget.getAttribute("max") -
-          $event.currentTarget.getAttribute("min"));
-      const percent = val * 100;
-
-      $event.currentTarget.style.backgroundImage = `-webkit-gradient(linear, left top, right top, color-stop(${percent}%, #42a5f5),color-stop(${percent}%, #42a5f51f))`;
-      $event.currentTarget.style.backgroundImage = `-moz-linear-gradient(left center, #42a5f5 0%, #42a5f5 ${percent}%, #42a5f51f ${percent}%, #42a5f51f 100%)`;
-    }
-  }
-});
-</script>

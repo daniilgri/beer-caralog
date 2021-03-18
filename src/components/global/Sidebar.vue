@@ -7,13 +7,9 @@
         </h2>
         <button
           class="sidebar__button close-button"
-          @click="handleCloseButtonOnClick"
+          @click="toggleHeaderStatus()"
         >
-          <svg class="close-button__svg" viewBox="0 0 53.7 53.7">
-            <path
-              d="M35.6 34.4L28 26.8l7.6-7.6c.2-.2.2-.5 0-.7l-.5-.5c-.2-.2-.5-.2-.7 0l-7.6 7.6-7.5-7.6c-.2-.2-.5-.2-.7 0l-.6.6c-.2.2-.2.5 0 .7l7.6 7.6-7.6 7.5c-.2.2-.2.5 0 .7l.5.5c.2.2.5.2.7 0l7.6-7.6 7.6 7.6c.2.2.5.2.7 0l.5-.5c.2-.2.2-.5 0-.7z"
-            />
-          </svg>
+          <CloseIcon />
         </button>
       </div>
       <nav class="sidebar__nav">
@@ -29,6 +25,26 @@
     </div>
   </transition>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+import { mapMutations, mapState } from "vuex";
+import { SIDEBAR_MUTATION_TYPES } from "../../store/sidebar/mutationTypes";
+
+export default Vue.extend({
+  name: "Sidebar",
+  computed: {
+    ...mapState("sidebar", {
+      status: "open"
+    })
+  },
+  methods: {
+    ...mapMutations("sidebar", {
+      toggleHeaderStatus: SIDEBAR_MUTATION_TYPES.TOGGLE
+    })
+  }
+});
+</script>
 
 <style lang="scss" scoped>
 $sidebarBackgroundColor: white;
@@ -93,12 +109,6 @@ $root: ".sidebar";
 .close-button {
   height: 64px;
   width: 64px;
-
-  &__svg {
-    height: 100%;
-    width: auto;
-    fill: white;
-  }
 }
 
 .slide-enter-active,
@@ -109,26 +119,3 @@ $root: ".sidebar";
   width: 0;
 }
 </style>
-
-<script lang="ts">
-import Vue from "vue";
-import { mapMutations, mapState } from "vuex";
-import { PostsMutationsTypes } from "../../store/sidebar/mutationTypes";
-
-export default Vue.extend({
-  name: "Sidebar",
-  computed: {
-    ...mapState("sidebar", {
-      status: "open"
-    })
-  },
-  methods: {
-    ...mapMutations("sidebar", {
-      toggleHeaderStatus: PostsMutationsTypes.TOGGLE
-    }),
-    handleCloseButtonOnClick() {
-      this.toggleHeaderStatus();
-    }
-  }
-});
-</script>

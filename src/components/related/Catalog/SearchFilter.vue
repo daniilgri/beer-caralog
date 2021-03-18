@@ -1,5 +1,5 @@
 <template>
-  <div class="search-section__filter search-filter">
+  <div class="search-filter">
     <div class="search-filter__head">
       <h3 class="search-filter__title">Filter results</h3>
     </div>
@@ -10,6 +10,16 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+import SearchField from "./SearchField.vue";
+
+export default Vue.extend({
+  name: "SearchFilter",
+  components: { SearchField }
+});
+</script>
 
 <style lang="scss" scoped>
 .search-filter {
@@ -27,22 +37,5 @@
   &__content {
     margin-top: 35px;
   }
-
-  &__field {
-    margin-bottom: 30px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
 }
 </style>
-
-<script lang="ts">
-import Vue from "vue";
-import SearchField from "./SearchField";
-
-export default Vue.extend({
-  name: "SearchFilter",
-  components: { SearchField }
-});
-</script>

@@ -5,19 +5,6 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-.search-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 60px;
-
-  &__searchbar {
-    margin-bottom: 30px;
-  }
-}
-</style>
-
 <script lang="ts">
 import Vue from "vue";
 import Searchbar from "./Searchbar.vue";
@@ -28,3 +15,12 @@ export default Vue.extend({
   components: { Searchbar, SearchFilter }
 });
 </script>
+
+<style lang="scss" scoped>
+.search-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+}
+</style>
