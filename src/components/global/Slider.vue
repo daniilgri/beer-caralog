@@ -27,8 +27,12 @@ export default Vue.extend({
   methods: {
     handleSliderLineOnMouseMove(event: MouseEvent) {
       const { currentTarget } = event;
-      if (currentTarget) {
-        const val =
+      console.log(currentTarget);
+    }
+  }
+});
+
+/*const val =
           (<number>(<unknown>(<HTMLInputElement>currentTarget).value) -
             <number>(
               (<unknown>(<HTMLInputElement>currentTarget).getAttribute("min"))
@@ -48,11 +52,7 @@ export default Vue.extend({
 
         (<HTMLInputElement>(
           currentTarget
-        )).style.backgroundImage = `-moz-linear-gradient(left center, #42a5f5 0%, #42a5f5 ${percent}%, #42a5f51f ${percent}%, #42a5f51f 100%)`;
-      }
-    }
-  }
-});
+        )).style.backgroundImage = `-moz-linear-gradient(left center, #42a5f5 0%, #42a5f5 ${percent}%, #42a5f51f ${percent}%, #42a5f51f 100%)`; */
 </script>
 
 <style lang="scss" scoped>

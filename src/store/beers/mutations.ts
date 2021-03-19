@@ -8,6 +8,7 @@ export const mutations: MutationTree<BeersState> = {
     state.loading = true;
     state.beers = [];
     state.error = "";
+    state.page = 1;
   },
   [BEERS_MUTATION_TYPES.GET_BEERS_INITIAL_SUCCEED](state, payload) {
     state.loading = false;
@@ -21,5 +22,8 @@ export const mutations: MutationTree<BeersState> = {
     state.loading = false;
     state.beers.push(...payload);
     state.page += 1;
+  },
+  [BEERS_MUTATION_TYPES.SET_SEARCH_QUERY](state, payload) {
+    state.query = payload;
   }
 };

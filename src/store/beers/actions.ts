@@ -8,14 +8,19 @@ import { BEERS_MUTATION_TYPES } from "./mutationTypes";
 export const actions: ActionTree<BeersState, RootState> = {
   [BEERS_MUTATION_TYPES.GET_BEERS_INITIAL_REQUESTED]({ commit, state }) {
     const xhr = new XMLHttpRequest();
-    xhr.open(
-      "GET",
-      `https://api.punkapi.com/v2/beers?page=${state.page}&per_page=${state.count}`
-    );
+    commit(BEERS_MUTATION_TYPES.GET_BEERS_INITIAL_REQUESTED);
+    if (state.query) {
+      xhr.open(
+        "GET",
+        `https://api.punkapi.com/v2/beers?page=1&per_page=${state.count}&beer_name=${state.query}`
+      );
+    } else {
+      xhr.open(
+        "GET",
+        `https://api.punkapi.com/v2/beers?page=${state.page}&per_page=${state.count}`
+      );
+    }
     xhr.send();
-    xhr.onprogress = () => {
-      commit(BEERS_MUTATION_TYPES.GET_BEERS_INITIAL_REQUESTED);
-    };
 
     xhr.onload = () => {
       if (xhr.status != 200) {
@@ -34,15 +39,20 @@ export const actions: ActionTree<BeersState, RootState> = {
   },
   [BEERS_MUTATION_TYPES.GET_BEERS_NEXT_REQUESTED]({ commit, state }) {
     const xhr = new XMLHttpRequest();
-    xhr.open(
-      "GET",
-      `https://api.punkapi.com/v2/beers?page=${state.page}&per_page=${state.count}`
-    );
-    xhr.send();
+    commit(BEERS_MUTATION_TYPES.GET_BEERS_NEXT_REQUESTED);
 
-    xhr.onprogress = () => {
-      commit(BEERS_MUTATION_TYPES.GET_BEERS_NEXT_REQUESTED);
-    };
+    if (state.query) {
+      xhr.open(
+        "GET",
+        `https://api.punkapi.com/v2/beers?page=${state.page}&per_page=${state.count}&beer_name=${state.query}`
+      );
+    } else {
+      xhr.open(
+        "GET",
+        `https://api.punkapi.com/v2/beers?page=${state.page}&per_page=${state.count}`
+      );
+    }
+    xhr.send();
 
     xhr.onload = () => {
       if (xhr.status != 200) {

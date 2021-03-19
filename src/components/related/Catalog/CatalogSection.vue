@@ -4,7 +4,7 @@
       <div class="catalog-section__list">
         <CatalogItem v-for="beer in beers" :key="beer.id" :item="beer" />
       </div>
-      <div class="catalog-section__scroll">
+      <div v-show="loading" class="catalog-section__scroll">
         <Loader />
       </div>
     </div>
@@ -27,7 +27,8 @@ export default Vue.extend({
     ...mapState("beers", {
       beers: "beers",
       loading: "loading",
-      error: "error"
+      error: "error",
+      limit: "limit"
     })
   },
   beforeMount() {
@@ -42,15 +43,17 @@ export default Vue.extend({
       getBeersNext: BEERS_MUTATION_TYPES.GET_BEERS_NEXT_REQUESTED
     }),
     scroll() {
-      window.onscroll = () => {
-        let bottomOfWindow =
-          document.documentElement.scrollTop + window.innerHeight ===
-          document.documentElement.offsetHeight;
+      window.addEventListener("scroll", () => {
+        const {
+          scrollTop,
+          scrollHeight,
+          clientHeight
+        } = document.documentElement;
 
-        if (bottomOfWindow) {
+        if (clientHeight + scrollTop >= scrollHeight) {
           this.getBeersNext();
         }
-      };
+      });
     }
   }
 });

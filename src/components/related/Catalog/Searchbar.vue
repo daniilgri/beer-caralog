@@ -1,17 +1,49 @@
 <template>
-  <div class="searchbar">
-    <input type="text" placeholder="Search..." class="searchbar__input" />
-    <button class="searchbar__button">
+  <form class="searchbar">
+    <input
+      type="text"
+      placeholder="Search..."
+      class="searchbar__input"
+      :value="query"
+      @input="handleSearchbarOnInput"
+    />
+    <button
+      type="submit"
+      class="searchbar__button"
+      @click.prevent="getBeersInitial"
+    >
       Search
     </button>
-  </div>
+  </form>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import { mapActions, mapState, mapMutations } from "vuex";
+
+import { BEERS_MUTATION_TYPES } from "../../../store/beers/mutationTypes";
 
 export default Vue.extend({
-  name: "Searchbar"
+  name: "Searchbar",
+  computed: {
+    ...mapState("beers", {
+      query: "query"
+    })
+  },
+  methods: {
+    ...mapActions("beers", {
+      getBeersInitial: BEERS_MUTATION_TYPES.GET_BEERS_INITIAL_REQUESTED
+    }),
+    ...mapMutations("beers", {
+      setSearchQuery: BEERS_MUTATION_TYPES.SET_SEARCH_QUERY
+    }),
+    handleSearchbarOnInput(event: InputEvent) {
+      const { target } = event;
+      if (target) {
+        this.setSearchQuery((target as HTMLInputElement).value);
+      }
+    }
+  }
 });
 </script>
 
