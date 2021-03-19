@@ -4,10 +4,12 @@ import Vuex from "vuex";
 import { RootState } from "./types";
 import { sidebar } from "./sidebar";
 import { beers } from "./beers";
+import { favorites } from "./favorites";
+import { beerDetail } from "./beerDetail";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store<RootState>({
   strict: process.env.NODE_ENV !== "production",
-  modules: { sidebar, beers }
+  modules: { sidebar, beers, favorites, beerDetail }
 });

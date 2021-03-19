@@ -1,0 +1,1 @@
+export enum FAVORITES_MUTATION_TYPES {}

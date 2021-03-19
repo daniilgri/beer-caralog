@@ -1,13 +1,18 @@
 <template>
   <article class="catalog-item">
-    <div class="catalog-item__head"></div>
+    <div class="catalog-item__head">
+      <img :src="item.image_url" alt="img" class="catalog-item__img" />
+    </div>
     <div class="catalog-item__body">
       <h5 class="catalog-item__title">{{ item.name }}</h5>
       <h6 class="catalog-item__tagline">{{ item.tagline }}</h6>
       <div class="catalog-item__controllers">
-        <a class="catalog-item__link" href="#">
+        <router-link
+          class="catalog-item__link"
+          :to="{ name: 'Detail', params: { id: item.id } }"
+        >
           Open
-        </a>
+        </router-link>
         <button class="catalog-item__button">
           Favorite
         </button>
@@ -44,6 +49,13 @@ $itemButtonTextColor: white;
   &__head {
     height: 130px;
     background: #80808014;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__img {
+    width: auto;
+    height: 100%;
   }
 
   &__body {
@@ -70,11 +82,17 @@ $itemButtonTextColor: white;
     background-color: rgba(0, 0, 0, 0);
     border: 0;
     cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
   }
 
   &__link {
     text-decoration: none;
     color: $itemLinkColor;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
   }
 }
 </style>

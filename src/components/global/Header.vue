@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="header__inner">
-      <button class="header__button sidebar-button" @click="toggleHeaderStatus">
+      <button class="header__button sidebar-button" @click="openSidebar">
         <BurgerMenuIcon />
       </button>
       <h2 class="header__title">Beer catalog</h2>
@@ -24,7 +24,7 @@ export default Vue.extend({
   components: { DropdownIcon, BurgerMenuIcon },
   methods: {
     ...mapMutations("sidebar", {
-      toggleHeaderStatus: SIDEBAR_MUTATION_TYPES.TOGGLE
+      openSidebar: SIDEBAR_MUTATION_TYPES.OPEN
     })
   }
 });

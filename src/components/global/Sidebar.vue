@@ -5,20 +5,21 @@
         <h2 class="sidebar__title">
           Beer Catalog
         </h2>
-        <button
-          class="sidebar__button close-button"
-          @click="toggleHeaderStatus()"
-        >
+        <button class="sidebar__button close-button" @click="closeSidebar">
           <CloseIcon />
         </button>
       </div>
       <nav class="sidebar__nav">
         <ul class="sidebar__ul">
           <li class="sidebar__li">
-            <a href="#" class="sidebar__link">Beer catalog</a>
+            <router-link :to="{ name: 'Catalog' }" class="sidebar__link"
+              >Beer catalog</router-link
+            >
           </li>
           <li class="sidebar__li">
-            <a href="#" class="sidebar__link">Favorites</a>
+            <router-link :to="{ name: 'Favorites' }" class="sidebar__link"
+              >Favorites</router-link
+            >
           </li>
         </ul>
       </nav>
@@ -29,10 +30,13 @@
 <script lang="ts">
 import Vue from "vue";
 import { mapMutations, mapState } from "vuex";
+
+import CloseIcon from "../global/icons/CloseIcon.vue";
 import { SIDEBAR_MUTATION_TYPES } from "../../store/sidebar/mutationTypes";
 
 export default Vue.extend({
   name: "Sidebar",
+  components: { CloseIcon },
   computed: {
     ...mapState("sidebar", {
       status: "open"
@@ -40,7 +44,7 @@ export default Vue.extend({
   },
   methods: {
     ...mapMutations("sidebar", {
-      toggleHeaderStatus: SIDEBAR_MUTATION_TYPES.TOGGLE
+      closeSidebar: SIDEBAR_MUTATION_TYPES.CLOSE
     })
   }
 });
