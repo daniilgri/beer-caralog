@@ -3,7 +3,18 @@
     <div class="beer-detail-description-area__info">
       <h3 class="beer-detail-description-area__title">{{ name }}</h3>
       <h4 class="beer-detail-description-area__tagline">{{ tagline }}</h4>
-      <button class="beer-detail-description-area__button">
+      <button
+        v-if="isFavorite"
+        class="beer-detail-description-area__button"
+        @click="onDeleteFavoriteButtonClick"
+      >
+        Delete favorite
+      </button>
+      <button
+        v-else
+        class="beer-detail-description-area__button"
+        @click="onAddFavoriteButtonClick"
+      >
         Add to favorites
       </button>
       <p class="beer-detail-description-area__description">
@@ -22,6 +33,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+
 export default Vue.extend({
   name: "BeerDetailDescriptionArea",
   props: {
@@ -40,6 +52,18 @@ export default Vue.extend({
     imageUrl: {
       type: String,
       required: true
+    },
+    onAddFavoriteButtonClick: {
+      type: Function,
+      required: true
+    },
+    onDeleteFavoriteButtonClick: {
+      type: Function,
+      required: true
+    },
+    isFavorite: {
+      type: Boolean,
+      default: false
     }
   }
 });
@@ -85,6 +109,7 @@ $beerDetailButtonBackgroundColor: #1e88e5;
   }
 
   &__button {
+    cursor: pointer;
     text-transform: uppercase;
     color: $beerDetailButtonTextColor;
     background-color: $beerDetailButtonBackgroundColor;

@@ -28,31 +28,31 @@ export default Vue.extend({
     handleSliderLineOnMouseMove(event: MouseEvent) {
       const { currentTarget } = event;
       console.log(currentTarget);
+      /*const val =
+        (<number>(<unknown>(<HTMLInputElement>currentTarget).value) -
+          <number>(
+            (<unknown>(<HTMLInputElement>currentTarget).getAttribute("min"))
+          )) /
+        (<number>(
+          (<unknown>(<HTMLInputElement>currentTarget).getAttribute("max"))
+        ) -
+          <number>(
+            (<unknown>(<HTMLInputElement>currentTarget).getAttribute("min"))
+          ));
+
+      const percent = val * 100;
+
+      (<HTMLInputElement>(
+        currentTarget
+      )).style.backgroundImage = `-webkit-gradient(linear, left top, right top, color-stop(${percent}%, #42a5f5),color-stop(${percent}%, #42a5f51f))`;
+
+      (<HTMLInputElement>(
+        currentTarget
+      )).style.backgroundImage = `-moz-linear-gradient(left center, #42a5f5 0%, #42a5f5 ${percent}%, #42a5f51f ${percent}%, #42a5f51f 100%)`;
+    */
     }
   }
 });
-
-/*const val =
-          (<number>(<unknown>(<HTMLInputElement>currentTarget).value) -
-            <number>(
-              (<unknown>(<HTMLInputElement>currentTarget).getAttribute("min"))
-            )) /
-          (<number>(
-            (<unknown>(<HTMLInputElement>currentTarget).getAttribute("max"))
-          ) -
-            <number>(
-              (<unknown>(<HTMLInputElement>currentTarget).getAttribute("min"))
-            ));
-
-        const percent = val * 100;
-
-        (<HTMLInputElement>(
-          currentTarget
-        )).style.backgroundImage = `-webkit-gradient(linear, left top, right top, color-stop(${percent}%, #42a5f5),color-stop(${percent}%, #42a5f51f))`;
-
-        (<HTMLInputElement>(
-          currentTarget
-        )).style.backgroundImage = `-moz-linear-gradient(left center, #42a5f5 0%, #42a5f5 ${percent}%, #42a5f51f ${percent}%, #42a5f51f 100%)`; */
 </script>
 
 <style lang="scss" scoped>

@@ -16,6 +16,17 @@ export interface Ingredients {
   yeast: string;
 }
 
+export interface Mash {
+  duration: number;
+  temp: { unit: string; value: number };
+}
+
+export interface Method {
+  fermentation: { temp: { unit: string; value: number } };
+  mashTemp: Mash[];
+  twist: string;
+}
+
 export interface SingleBeer {
   name: string;
   tagline: string;
@@ -27,6 +38,7 @@ export interface SingleBeer {
   foodPairing: string[];
   brewersTips: string;
   ingredients: Ingredients;
+  method: Method;
 }
 
 export interface BeerDetailState {

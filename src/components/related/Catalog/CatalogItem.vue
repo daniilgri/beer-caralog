@@ -1,7 +1,7 @@
 <template>
   <article class="catalog-item">
     <div class="catalog-item__head">
-      <img :src="item.image_url" alt="img" class="catalog-item__img" />
+      <img :src="item.imageUrl" alt="img" class="catalog-item__img" />
     </div>
     <div class="catalog-item__body">
       <h5 class="catalog-item__title">{{ item.name }}</h5>
@@ -13,7 +13,18 @@
         >
           Open
         </router-link>
-        <button class="catalog-item__button">
+        <button
+          v-if="isFavorite(item)"
+          class="catalog-item__button"
+          @click="handleDeleteFavoriteButtonOnClick"
+        >
+          Delete favorite
+        </button>
+        <button
+          v-else
+          class="catalog-item__button"
+          @click="handleAddFavoriteButtonOnClick"
+        >
           Favorite
         </button>
       </div>
@@ -30,6 +41,26 @@ export default Vue.extend({
     item: {
       type: Object,
       required: true
+    },
+    onAddFavorite: {
+      type: Function,
+      required: true
+    },
+    onDeleteFavorite: {
+      type: Function,
+      required: true
+    },
+    isFavorite: {
+      type: Function,
+      required: true
+    }
+  },
+  methods: {
+    handleAddFavoriteButtonOnClick() {
+      this.onAddFavorite(this.item);
+    },
+    handleDeleteFavoriteButtonOnClick() {
+      this.onDeleteFavorite(this.item.id);
     }
   }
 });
@@ -85,6 +116,7 @@ $itemButtonTextColor: white;
     text-transform: uppercase;
     font-weight: 600;
     font-size: 14px;
+    outline: none;
   }
 
   &__link {

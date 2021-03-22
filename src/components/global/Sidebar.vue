@@ -122,4 +122,8 @@ $root: ".sidebar";
 .slide-enter, .slide-leave-to /* .fade-leave-active below version 2.1.8 */ {
   width: 0;
 }
+
+.router-link-exact-active {
+  color: #03a9f4;
+}
 </style>

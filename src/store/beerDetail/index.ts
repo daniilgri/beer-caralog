@@ -5,7 +5,7 @@ import { BeerDetailState } from "./types";
 import { mutations } from "./mutations";
 import { actions } from "./actions";
 
-const initialState: BeerDetailState = {
+export const initialState: BeerDetailState = {
   loading: false,
   beer: {
     name: "",
@@ -21,6 +21,11 @@ const initialState: BeerDetailState = {
       hops: [],
       malt: [],
       yeast: ""
+    },
+    method: {
+      fermentation: { temp: { unit: "", value: 0 } },
+      mashTemp: [],
+      twist: ""
     }
   },
   error: ""

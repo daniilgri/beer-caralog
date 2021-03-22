@@ -1,16 +1,26 @@
 <template>
   <section class="favorites-list">
-    <FavoritesItem />
+    <FavoritesItem
+      v-for="favorite in favorites"
+      :key="favorite.id"
+      :favorite="favorite"
+    />
   </section>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import { mapState } from "vuex";
 import FavoritesItem from "./FavoritesItem.vue";
 
 export default Vue.extend({
   name: "FavoritesList",
-  components: { FavoritesItem }
+  components: { FavoritesItem },
+  computed: {
+    ...mapState("favorites", {
+      favorites: "favorites"
+    })
+  }
 });
 </script>
 

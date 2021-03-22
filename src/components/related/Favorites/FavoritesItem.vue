@@ -1,16 +1,21 @@
 <template>
   <article class="favorites-item">
     <div class="favorites-item__content">
-      <h4 class="favorites-item__title">Punk</h4>
-      <h5 class="favorites-item__tagline">Tagline</h5>
-      <p class="favorites-item__description">Lorem ipsum text</p>
+      <h4 class="favorites-item__title">{{ favorite.name }}</h4>
+      <h5 class="favorites-item__tagline">{{ favorite.tagline }}</h5>
+      <p class="favorites-item__description">{{ favorite.description }}</p>
     </div>
-    <div class="favorites-item__image">Img</div>
+    <div class="favorites-item__preview">
+      <img :src="favorite.imageUrl" alt="img" class="favorites-item__img" />
+    </div>
     <div class="favorites-item__controllers">
-      <a class="favorites-item__link" href="#">
+      <router-link
+        class="favorites-item__link"
+        :to="{ name: 'Detail', params: { id: favorite.id } }"
+      >
         Open
-      </a>
-      <button class="favorites-item__button">
+      </router-link>
+      <button class="favorites-item__button" @click="handleDeleteButtonOnClick">
         Remove favorite
       </button>
     </div>
@@ -19,8 +24,25 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { mapMutations } from "vuex";
+import { FAVORITES_MUTATION_TYPES } from "../../../store/favorites/mutationTypes";
+
 export default Vue.extend({
-  name: "FavoritesItem"
+  name: "FavoritesItem",
+  props: {
+    favorite: {
+      type: Object,
+      required: true
+    }
+  },
+  methods: {
+    ...mapMutations("favorites", {
+      deleteFavorite: FAVORITES_MUTATION_TYPES.DELETE_FAVORITE
+    }),
+    handleDeleteButtonOnClick() {
+      this.deleteFavorite(this.favorite.id);
+    }
+  }
 });
 </script>
 
@@ -32,12 +54,17 @@ $itemLinkColor: black;
 $itemButtonTextColor: black;
 
 .favorites-item {
-  width: 40%;
+  width: 60%;
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
-  padding: 10px;
-  @include box-shadow(0px, 0px, 10px, 4px, rgba(0, 0, 0, 0.08));
+  padding: 40px 40px 20px 40px;
+  @include box-shadow(0px, 6px, 9px, 8px, rgba(0, 0, 0, 0.04));
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &__content {
     flex-basis: 80%;
@@ -57,8 +84,14 @@ $itemButtonTextColor: black;
     color: $taglineColor;
   }
 
-  &__image {
+  &__preview {
     flex-basis: 20%;
+    height: 200px;
+  }
+
+  &__img {
+    height: 100%;
+    width: auto;
   }
 
   &__controllers {
@@ -82,6 +115,7 @@ $itemButtonTextColor: black;
     text-transform: uppercase;
     font-weight: 600;
     font-size: 14px;
+    outline: none;
   }
 }
 </style>
