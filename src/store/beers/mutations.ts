@@ -31,5 +31,14 @@ export const mutations: MutationTree<BeersState> = {
   },
   [BEERS_MUTATION_TYPES.SET_SEARCH_QUERY](state, payload) {
     state.query = payload;
+  },
+  [BEERS_MUTATION_TYPES.SET_AVM_OPTION](state, payload) {
+    state.avm = payload;
+  },
+  [BEERS_MUTATION_TYPES.SET_EBC_OPTION](state, payload) {
+    state.ebc = payload;
+  },
+  [BEERS_MUTATION_TYPES.SET_IBU_OPTION](state, payload) {
+    state.ibu = payload;
   }
 };

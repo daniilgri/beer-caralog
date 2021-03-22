@@ -1,7 +1,7 @@
 <template>
   <div class="search-section">
-    <Searchbar />
-    <SearchFilter />
+    <Searchbar :active-filter="activeFilter" />
+    <SearchFilter v-if="isFilterActive" />
   </div>
 </template>
 
@@ -12,7 +12,17 @@ import SearchFilter from "./SearchFilter.vue";
 
 export default Vue.extend({
   name: "SearchSection",
-  components: { Searchbar, SearchFilter }
+  components: { Searchbar, SearchFilter },
+  data() {
+    return {
+      isFilterActive: false
+    };
+  },
+  methods: {
+    activeFilter() {
+      this.isFilterActive = true;
+    }
+  }
 });
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <form class="searchbar">
+  <form class="searchbar" @submit.prevent="handleFormOnSubmit">
     <input
       type="text"
       placeholder="Search..."
@@ -10,7 +10,7 @@
     <button
       type="submit"
       class="searchbar__button"
-      @click.prevent="getBeersInitial"
+      @click.prevent="handleFormOnSubmit"
     >
       Search
     </button>
@@ -25,6 +25,9 @@ import { BEERS_MUTATION_TYPES } from "../../../store/beers/mutationTypes";
 
 export default Vue.extend({
   name: "Searchbar",
+  props: {
+    activeFilter: { type: Function, required: true }
+  },
   computed: {
     ...mapState("beers", {
       query: "query"
@@ -42,6 +45,10 @@ export default Vue.extend({
       if (target) {
         this.setSearchQuery((target as HTMLInputElement).value);
       }
+    },
+    handleFormOnSubmit() {
+      this.getBeersInitial();
+      this.activeFilter();
     }
   }
 });
@@ -70,6 +77,7 @@ $searchbarInputBorderColor: #9e9e9e;
     margin-left: 5%;
     border: 0;
     background-color: rgba(0, 0, 0, 0);
+    outline: none;
   }
 }
 </style>

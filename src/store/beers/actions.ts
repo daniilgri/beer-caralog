@@ -9,17 +9,25 @@ export const actions: ActionTree<BeersState, RootState> = {
   [BEERS_MUTATION_TYPES.GET_BEERS_INITIAL_REQUESTED]({ commit, state }) {
     const xhr = new XMLHttpRequest();
     commit(BEERS_MUTATION_TYPES.GET_BEERS_INITIAL_REQUESTED);
+    let query: string = `https://api.punkapi.com/v2/beers?page=${state.page}&per_page=${state.count}`;
+
     if (state.query) {
-      xhr.open(
-        "GET",
-        `https://api.punkapi.com/v2/beers?page=1&per_page=${state.count}&beer_name=${state.query}`
-      );
-    } else {
-      xhr.open(
-        "GET",
-        `https://api.punkapi.com/v2/beers?page=${state.page}&per_page=${state.count}`
-      );
+      query += `&beer_name=${state.query}`;
     }
+
+    if (state.avm > 0) {
+      query += `&abv_lt=${state.avm}`;
+    }
+
+    if (state.ibu > 0) {
+      query += `&ibu_lt=${state.ibu}`;
+    }
+
+    if (state.ebc > 0) {
+      query += `&ebc=${state.ebc}`;
+    }
+
+    xhr.open("GET", query);
     xhr.send();
 
     xhr.onload = () => {
@@ -28,7 +36,6 @@ export const actions: ActionTree<BeersState, RootState> = {
         return;
       }
       const data = JSON.parse(xhr.responseText);
-
       commit(BEERS_MUTATION_TYPES.GET_BEERS_INITIAL_SUCCEED, data);
     };
 

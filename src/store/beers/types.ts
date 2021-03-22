@@ -14,4 +14,7 @@ export interface BeersState {
   query: string;
   page: number;
   count: number;
+  avm: number;
+  ibu: number;
+  ebc: number;
 }

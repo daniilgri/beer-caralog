@@ -13,7 +13,10 @@ const initialState: BeersState = {
   count: 12,
   limit: 12,
   page: 1,
-  query: ""
+  query: "",
+  avm: 0,
+  ibu: 0,
+  ebc: 0
 };
 
 export const beers: Module<BeersState, RootState> = {
