@@ -1,6 +1,6 @@
 import { ActionTree } from "vuex";
 
-import { RootState } from "./../types";
+import { RootState } from "../types";
 import { BeersState } from "./types";
 
 import { BEERS_MUTATION_TYPES } from "./mutationTypes";
