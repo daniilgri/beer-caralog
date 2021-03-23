@@ -70,7 +70,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@import "../../../styles/mixins/boxShadow.scss";
 $taglineColor: gray;
 $beerDetailButtonTextColor: white;
 $beerDetailButtonBackgroundColor: #1e88e5;

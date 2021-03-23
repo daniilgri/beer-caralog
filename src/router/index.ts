@@ -1,27 +1,29 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import Catalog from "../views/Catalog.vue";
-import Favorites from "../views/Favorites.vue";
-import BeerDetail from "../views/BeerDetail.vue";
-import store from "../store";
-import { SIDEBAR_MUTATION_TYPES } from "../store/sidebar/mutationTypes";
+
+import Catalog from "@/views/Catalog.vue";
+import Favorites from "@/views/Favorites.vue";
+import BeerDetail from "@/views/BeerDetail.vue";
+import store from "@/store";
+import { SIDEBAR_MUTATION_TYPES } from "@/store/sidebar/mutationTypes";
+import { ROUTES } from "@/router/routes";
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    name: "Catalog",
+    name: ROUTES.CATALOG,
     component: Catalog
   },
   {
     path: "/favorites",
-    name: "Favorites",
+    name: ROUTES.FAVORITES,
     component: Favorites
   },
   {
     path: "/beer/:id",
-    name: "Detail",
+    name: ROUTES.DETAIL,
     component: BeerDetail
   }
 ];

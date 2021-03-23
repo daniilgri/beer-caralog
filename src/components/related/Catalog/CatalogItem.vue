@@ -1,7 +1,7 @@
 <template>
   <article class="catalog-item">
     <div class="catalog-item__head">
-      <img :src="item.imageUrl" alt="img" class="catalog-item__img" />
+      <img :src="item.image_url" alt="img" class="catalog-item__img" />
     </div>
     <div class="catalog-item__body">
       <h5 class="catalog-item__title">{{ item.name }}</h5>
@@ -9,7 +9,7 @@
       <div class="catalog-item__controllers">
         <router-link
           class="catalog-item__link"
-          :to="{ name: 'Detail', params: { id: item.id } }"
+          :to="{ name: routes.detail, params: { id: item.id } }"
         >
           Open
         </router-link>
@@ -34,6 +34,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { ROUTES } from "@/router/routes";
 
 export default Vue.extend({
   name: "CatalogItem",
@@ -54,6 +55,13 @@ export default Vue.extend({
       type: Function,
       required: true
     }
+  },
+  data() {
+    return {
+      routes: {
+        detail: ROUTES.DETAIL
+      }
+    };
   },
   methods: {
     handleAddFavoriteButtonOnClick() {

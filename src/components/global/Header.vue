@@ -15,9 +15,9 @@
 <script lang="ts">
 import Vue from "vue";
 import { mapMutations } from "vuex";
-import { SIDEBAR_MUTATION_TYPES } from "../../store/sidebar/mutationTypes";
-import DropdownIcon from "./icons/DropdownIcon.vue";
-import BurgerMenuIcon from "./icons/BurgerMenuIcon.vue";
+import { SIDEBAR_MUTATION_TYPES } from "@/store/sidebar/mutationTypes";
+import DropdownIcon from "@/components/global/icons/DropdownIcon.vue";
+import BurgerMenuIcon from "@/components/global/icons/BurgerMenuIcon.vue";
 
 export default Vue.extend({
   name: "Header",

@@ -14,11 +14,9 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-$sidebarButtonWhiteThemeColor: white;
-
 .burger-menu-icon {
   height: 100%;
   width: auto;
-  fill: $sidebarButtonWhiteThemeColor;
+  fill: white;
 }
 </style>

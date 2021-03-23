@@ -1,11 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import { RootState } from "./types";
-import { sidebar } from "./sidebar";
-import { beers } from "./beers";
-import { favorites } from "./favorites";
-import { beerDetail } from "./beerDetail";
+import { RootState } from "@/store/interfaces";
+import { sidebar } from "@/store/sidebar";
+import { beers } from "@/store/beers";
+import { favorites } from "@/store/favorites";
+import { beerDetail } from "@/store/beerDetail";
 
 Vue.use(Vuex);
 

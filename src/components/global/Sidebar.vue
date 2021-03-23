@@ -12,12 +12,12 @@
       <nav class="sidebar__nav">
         <ul class="sidebar__ul">
           <li class="sidebar__li">
-            <router-link :to="{ name: 'Catalog' }" class="sidebar__link"
+            <router-link :to="{ name: routes.catalog }" class="sidebar__link"
               >Beer catalog</router-link
             >
           </li>
           <li class="sidebar__li">
-            <router-link :to="{ name: 'Favorites' }" class="sidebar__link"
+            <router-link :to="{ name: routes.favorites }" class="sidebar__link"
               >Favorites</router-link
             >
           </li>
@@ -31,12 +31,21 @@
 import Vue from "vue";
 import { mapMutations, mapState } from "vuex";
 
-import CloseIcon from "../global/icons/CloseIcon.vue";
-import { SIDEBAR_MUTATION_TYPES } from "../../store/sidebar/mutationTypes";
+import CloseIcon from "@/components/global/icons/CloseIcon.vue";
+import { SIDEBAR_MUTATION_TYPES } from "@/store/sidebar/mutationTypes";
+import { ROUTES } from "@/router/routes";
 
 export default Vue.extend({
   name: "Sidebar",
   components: { CloseIcon },
+  data() {
+    return {
+      routes: {
+        catalog: ROUTES.CATALOG,
+        favorites: ROUTES.FAVORITES
+      }
+    };
+  },
   computed: {
     ...mapState("sidebar", {
       status: "open"

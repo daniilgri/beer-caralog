@@ -23,14 +23,14 @@
 import Vue from "vue";
 import { mapActions, mapState, mapMutations } from "vuex";
 
-import CatalogItem from "./CatalogItem.vue";
-import Loader from "../../global/Loader.vue";
-import { BEERS_MUTATION_TYPES } from "../../../store/beers/mutationTypes";
-import { FAVORITES_MUTATION_TYPES } from "../../../store/favorites/mutationTypes";
+import CatalogItem from "@/components/related/Catalog/CatalogItem.vue";
+import Loader from "@/components/global/Loader.vue";
+import { BEERS_MUTATION_TYPES } from "@/store/beers/mutationTypes";
+import { FAVORITES_MUTATION_TYPES } from "@/store/favorites/mutationTypes";
 // eslint-disable-next-line no-unused-vars
-import { SingleBeer } from "../../../store/beers/types";
+import { SingleBeer } from "@/store/beers/interfaces";
 // eslint-disable-next-line no-unused-vars
-import { SingleBeer as SingleFavoriteBeer } from "../../../store/favorites/types";
+import { SingleBeer as SingleFavoriteBeer } from "@/store/favorites/interfaces";
 
 export default Vue.extend({
   name: "CatalogSection",

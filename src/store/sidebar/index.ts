@@ -1,8 +1,8 @@
 import { Module } from "vuex";
 
-import { RootState } from "../types";
-import { SidebarState } from "./types";
-import { mutations } from "./mutations";
+import { RootState } from "@/store/interfaces";
+import { SidebarState } from "@/store/sidebar/interfaces";
+import { mutations } from "@/store/sidebar/mutations";
 
 const initialState: SidebarState = {
   open: false

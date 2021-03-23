@@ -32,8 +32,8 @@
 <script lang="ts">
 import Vue from "vue";
 import { mapState, mapMutations } from "vuex";
-import SearchField from "./SearchField.vue";
-import { BEERS_MUTATION_TYPES } from "../../../store/beers/mutationTypes";
+import SearchField from "@/components/related/Catalog/SearchField.vue";
+import { BEERS_MUTATION_TYPES } from "@/store/beers/mutationTypes";
 
 export default Vue.extend({
   name: "SearchFilter",

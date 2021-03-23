@@ -1,9 +1,9 @@
 import { ActionTree } from "vuex";
 
-import { RootState } from "./../types";
-import { BeerDetailState } from "./types";
+import { RootState } from "@/store/interfaces";
+import { BeerDetailState } from "@/store/beerDetail/interfaces";
 
-import { BEER_DETAIL_MUTATION_TYPES } from "./mutationTypes";
+import { BEER_DETAIL_MUTATION_TYPES } from "@/store/beerDetail/mutationTypes";
 
 export const actions: ActionTree<BeerDetailState, RootState> = {
   [BEER_DETAIL_MUTATION_TYPES.GET_BEER_REQUESTED]({ commit }, id) {
@@ -25,7 +25,6 @@ export const actions: ActionTree<BeerDetailState, RootState> = {
     };
 
     xhr.onerror = error => {
-      console.log(error);
       commit(BEER_DETAIL_MUTATION_TYPES.GET_BEER_FAILED);
     };
   }

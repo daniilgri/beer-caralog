@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import FavoritesList from "../components/related/Favorites/FavoritesList.vue";
+import FavoritesList from "@/components/related/Favorites/FavoritesList.vue";
 
 export default Vue.extend({
   name: "Favorites",

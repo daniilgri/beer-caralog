@@ -1,10 +1,10 @@
 import { Module } from "vuex";
 
-import { RootState } from "../types";
-import { BeersState } from "./types";
+import { RootState } from "@/store/interfaces";
+import { BeersState } from "@/store/beers/interfaces";
 
-import { mutations } from "./mutations";
-import { actions } from "./actions";
+import { mutations } from "@/store/beers/mutations";
+import { actions } from "@/store/beers/actions";
 
 const initialState: BeersState = {
   loading: false,

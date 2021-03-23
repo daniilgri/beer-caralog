@@ -14,11 +14,9 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-$dropdownButtonWhiteThemeColor: white;
-
 .dropdown-icon {
   height: 100%;
   width: auto;
-  fill: $dropdownButtonWhiteThemeColor;
+  fill: white;
 }
 </style>

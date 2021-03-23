@@ -7,8 +7,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Searchbar from "./Searchbar.vue";
-import SearchFilter from "./SearchFilter.vue";
+import Searchbar from "@/components/related/Catalog/Searchbar.vue";
+import SearchFilter from "@/components/related/Catalog/SearchFilter.vue";
 
 export default Vue.extend({
   name: "SearchSection",

@@ -1,9 +1,9 @@
 import { ActionTree } from "vuex";
 
-import { RootState } from "../types";
-import { BeersState } from "./types";
+import { RootState } from "@/store/interfaces";
+import { BeersState } from "@/store/beers/interfaces";
 
-import { BEERS_MUTATION_TYPES } from "./mutationTypes";
+import { BEERS_MUTATION_TYPES } from "@/store/beers/mutationTypes";
 
 export const actions: ActionTree<BeersState, RootState> = {
   [BEERS_MUTATION_TYPES.GET_BEERS_INITIAL_REQUESTED]({ commit, state }) {

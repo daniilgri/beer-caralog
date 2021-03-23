@@ -31,12 +31,12 @@ export interface SingleBeer {
   name: string;
   tagline: string;
   description: string;
-  imageUrl: string;
+  image_url: string;
   abv: number;
   ebc: number;
   ibu: number;
-  foodPairing: string[];
-  brewersTips: string;
+  food_pairing: string[];
+  brewers_tips: string;
   ingredients: Ingredients;
   method: Method;
 }

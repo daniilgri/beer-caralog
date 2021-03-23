@@ -14,11 +14,9 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-$closeIconFillColor: white;
-
 .close-icon {
   height: 100%;
   width: auto;
-  fill: $closeIconFillColor;
+  fill: white;
 }
 </style>

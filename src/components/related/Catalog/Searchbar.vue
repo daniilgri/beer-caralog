@@ -21,7 +21,7 @@
 import Vue from "vue";
 import { mapActions, mapState, mapMutations } from "vuex";
 
-import { BEERS_MUTATION_TYPES } from "../../../store/beers/mutationTypes";
+import { BEERS_MUTATION_TYPES } from "@/store/beers/mutationTypes";
 
 export default Vue.extend({
   name: "Searchbar",

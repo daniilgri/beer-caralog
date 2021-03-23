@@ -11,7 +11,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { mapState } from "vuex";
-import FavoritesItem from "./FavoritesItem.vue";
+import FavoritesItem from "@/components/related/Favorites/FavoritesItem.vue";
 
 export default Vue.extend({
   name: "FavoritesList",

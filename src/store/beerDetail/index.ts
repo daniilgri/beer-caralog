@@ -1,9 +1,9 @@
 import { Module } from "vuex";
 
-import { RootState } from "../types";
-import { BeerDetailState } from "./types";
-import { mutations } from "./mutations";
-import { actions } from "./actions";
+import { RootState } from "@/store/interfaces";
+import { BeerDetailState } from "@/store/beerDetail/interfaces";
+import { mutations } from "@/store/beerDetail/mutations";
+import { actions } from "@/store/beerDetail/actions";
 
 export const initialState: BeerDetailState = {
   loading: false,
@@ -11,12 +11,12 @@ export const initialState: BeerDetailState = {
     name: "",
     tagline: "",
     description: "",
-    imageUrl: "",
+    image_url: "",
     abv: 0,
     ibu: 0,
     ebc: 0,
-    foodPairing: [],
-    brewersTips: "",
+    food_pairing: [],
+    brewers_tips: "",
     ingredients: {
       hops: [],
       malt: [],

@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Slider from "../../global/Slider.vue";
+import Slider from "@/components/global/Slider.vue";
 
 export default Vue.extend({
   name: "SearchField",
