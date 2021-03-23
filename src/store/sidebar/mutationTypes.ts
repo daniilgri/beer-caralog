@@ -1,0 +1,4 @@
+export enum SIDEBAR_MUTATION_TYPES {
+  CLOSE = "@SIDEBAR/CLOSE",
+  OPEN = "@SIDEBAR/OPEN"
+}

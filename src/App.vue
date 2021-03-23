@@ -1,29 +1,28 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div>
+    <Sidebar />
+    <Header />
+    <router-view />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import Header from "./components/global/Header.vue";
+import Sidebar from "./components/global/Sidebar.vue";
 
 export default Vue.extend({
-  name: "App",
   components: {
-    HelloWorld
+    Header,
+    Sidebar
   }
 });
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+$defaultFont: "Lato", sans-serif;
+
+body {
+  font-family: $defaultFont;
 }
 </style>
