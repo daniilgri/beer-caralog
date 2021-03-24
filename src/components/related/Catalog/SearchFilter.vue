@@ -6,24 +6,24 @@
     <div class="search-filter__content">
       <SearchField
         name="Alcohol by valume"
-        :value="avm"
         :min="2"
         :max="14"
-        @on-change="setAVM"
+        :on-input="onAvmInput"
+        :value="avm"
       />
       <SearchField
         name="International Bitterness Units"
-        :value="ibu"
         :min="0"
         :max="120"
-        @on-change="setIBU"
+        :on-input="onIbuInput"
+        :value="ibu"
       />
       <SearchField
         name="Color by EBC"
-        :value="ebc"
         :min="4"
         :max="80"
-        @on-change="setEBC"
+        :on-input="onEbcInput"
+        :value="ebc"
       />
     </div>
   </div>
@@ -31,26 +31,18 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { mapState, mapMutations } from "vuex";
 import SearchField from "@/components/related/Catalog/SearchField.vue";
-import { BEERS_MUTATION_TYPES } from "@/store/beers/mutationTypes";
 
 export default Vue.extend({
   name: "SearchFilter",
   components: { SearchField },
-  computed: {
-    ...mapState("beers", {
-      avm: "avm",
-      ibu: "ibu",
-      ebc: "ebc"
-    })
-  },
-  methods: {
-    ...mapMutations("beers", {
-      setAVM: BEERS_MUTATION_TYPES.SET_AVM_OPTION,
-      setIBU: BEERS_MUTATION_TYPES.SET_IBU_OPTION,
-      setEBC: BEERS_MUTATION_TYPES.SET_EBC_OPTION
-    })
+  props: {
+    onAvmInput: { type: Function, required: true },
+    onIbuInput: { type: Function, required: true },
+    onEbcInput: { type: Function, required: true },
+    avm: { type: Number, required: true },
+    ibu: { type: Number, required: true },
+    ebc: { type: Number, required: true }
   }
 });
 </script>

@@ -40,7 +40,6 @@ export const actions: ActionTree<BeersState, RootState> = {
     };
 
     xhr.onerror = error => {
-      console.log(error);
       commit(BEERS_MUTATION_TYPES.GET_BEERS_INITIAL_FAILED);
     };
   },
