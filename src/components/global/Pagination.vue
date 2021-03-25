@@ -18,10 +18,12 @@
           pagination__item: true
         }"
       >
-        <PaginationTrigger
-          :page-number="paginationTrigger"
-          :on-click="changePage"
-        />
+        <button
+          class="pagination__button"
+          @click="changePage(paginationTrigger)"
+        >
+          {{ paginationTrigger }}
+        </button>
       </li>
       <li class="pagination__item">
         <button
@@ -39,13 +41,8 @@
 <script lang="ts">
 import Vue from "vue";
 
-import PaginationTrigger from "@/components/global/PaginationTrigger.vue";
-
 export default Vue.extend({
   name: "Pagination",
-  components: {
-    PaginationTrigger
-  },
   props: {
     currentPage: { type: Number, required: true },
     pageCount: { type: Number, required: true },
@@ -72,7 +69,7 @@ export default Vue.extend({
       if (currentPage <= visiblePagesThreshold + 1) {
         const pagintationTriggers = pagintationTriggersArray.map(
           (paginationTrigger, index) => {
-            return pagintationTriggersArray[0] + index + 1;
+            return index + 1;
           }
         );
         return pagintationTriggers;
@@ -102,6 +99,9 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+$paginationBorderColor: #acacac4a;
+$paginationItemStatusActiveBackgroundColor: #42a5f512;
+
 .pagination {
   width: 100%;
   display: flex;
@@ -113,7 +113,7 @@ export default Vue.extend({
   }
 
   &__item {
-    border: 1px solid #acacac4a;
+    border: 1px solid $paginationBorderColor;
     border-right: 0;
     color: #42a5f5;
 
@@ -123,7 +123,7 @@ export default Vue.extend({
 
     &:last-child {
       border-radius: 0 8px 8px 0;
-      border-right: 1px solid #acacac4a;
+      border-right: 1px solid $paginationBorderColor;
     }
 
     &_status {
@@ -132,7 +132,7 @@ export default Vue.extend({
       }
 
       &_active {
-        background-color: #42a5f512;
+        background-color: $paginationItemStatusActiveBackgroundColor;
       }
     }
   }
