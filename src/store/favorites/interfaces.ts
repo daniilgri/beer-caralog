@@ -7,4 +7,8 @@ export interface SingleBeer {
 
 export interface FavoritesState {
   favorites: SingleBeer[];
+  currentPage: number;
+  pageCount: number;
+  limit: number;
+  visiblePagesCount: number;
 }
