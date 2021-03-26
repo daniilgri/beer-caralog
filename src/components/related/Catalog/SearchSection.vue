@@ -8,12 +8,12 @@
     />
     <SearchFilter
       v-if="isFilterActive"
-      :on-avm-input="handleAVMOptionOnInput"
-      :on-ibu-input="handleIBUOptionOnInput"
-      :on-ebc-input="handleEBCOptionOnInput"
       :avm="avm"
       :ibu="ibu"
       :ebc="ebc"
+      @onAVMInput="handleAVMOptionOnInput"
+      @onIBUInput="handleIBUOptionOnInput"
+      @onEBCInput="handleEBCOptionOnInput"
     />
   </form>
 </template>
@@ -61,20 +61,14 @@ export default Vue.extend({
         this.setSearchQuery((target as HTMLInputElement).value);
       }
     },
-    handleAVMOptionOnInput(event: InputEvent): void {
-      if (event.target) {
-        this.setAVM(+(event.target as HTMLInputElement).value);
-      }
+    handleAVMOptionOnInput(payload: number): void {
+      this.setAVM(payload);
     },
-    handleIBUOptionOnInput(event: InputEvent): void {
-      if (event.target) {
-        this.setIBU(+(event.target as HTMLInputElement).value);
-      }
+    handleIBUOptionOnInput(payload: number): void {
+      this.setIBU(payload);
     },
-    handleEBCOptionOnInput(event: InputEvent): void {
-      if (event.target) {
-        this.setEBC(+(event.target as HTMLInputElement).value);
-      }
+    handleEBCOptionOnInput(payload: number): void {
+      this.setEBC(payload);
     },
     handleFormOnSubmit(): void {
       this.getBeersInitial();

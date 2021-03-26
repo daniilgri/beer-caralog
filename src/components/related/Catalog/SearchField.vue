@@ -4,7 +4,12 @@
       {{ name }}
     </h5>
     <div class="search-field__controller">
-      <Slider :min="min" :max="max" :on-input="onInput" :value="value" />
+      <Slider
+        :min="min"
+        :max="max"
+        :value="value"
+        @onSliderRangeInput="handleOnSliderRangeInput"
+      />
     </div>
   </div>
 </template>
@@ -20,8 +25,12 @@ export default Vue.extend({
     name: { type: String, required: true },
     min: { type: Number, required: true },
     max: { type: Number, required: true },
-    onInput: { type: Function, required: true },
     value: { type: Number, required: true }
+  },
+  methods: {
+    handleOnSliderRangeInput(payload: number): void {
+      this.$emit("onFilterOptionInput", payload);
+    }
   }
 });
 </script>

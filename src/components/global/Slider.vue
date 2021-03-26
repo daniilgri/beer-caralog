@@ -21,8 +21,17 @@ export default Vue.extend({
   props: {
     min: { type: Number, required: true },
     max: { type: Number, required: true },
-    onInput: { type: Function, required: true },
     value: { type: Number, required: true }
+  },
+  methods: {
+    onInput(event: InputEvent): void {
+      if (event.target) {
+        this.$emit(
+          "onSliderRangeInput",
+          +(event.target as HTMLInputElement).value
+        );
+      }
+    }
   }
 });
 </script>
