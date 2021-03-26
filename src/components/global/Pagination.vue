@@ -64,19 +64,18 @@ export default Vue.extend({
       const visiblePagesCount =
         pageCount >= this.visiblePages ? this.visiblePages : pageCount;
       const visiblePagesThreshold = this.visiblePages - 1;
-      const pagintationTriggersArray = Array(visiblePagesCount).fill(0);
+      let pagintationTriggers: number[] = [];
+      const pagintationTriggersArray = [...Array(visiblePagesCount).keys()].map(
+        (el, index) => index + 1
+      );
 
       if (currentPage <= visiblePagesThreshold + 1) {
-        const pagintationTriggers = pagintationTriggersArray.map(
-          (paginationTrigger, index) => {
-            return index + 1;
-          }
-        );
-        return pagintationTriggers;
+        return pagintationTriggersArray;
       }
 
       if (currentPage >= pageCount - visiblePagesThreshold + 1) {
-        const pagintationTriggers = pagintationTriggersArray.map(
+        console.log("2");
+        pagintationTriggers = pagintationTriggersArray.map(
           (paginationTrigger, index) => {
             return pageCount - index;
           }
@@ -84,13 +83,6 @@ export default Vue.extend({
         pagintationTriggers.reverse();
         return pagintationTriggers;
       }
-
-      pagintationTriggersArray[0] = currentPage - visiblePagesThreshold + 1;
-      const pagintationTriggers = pagintationTriggersArray.map(
-        (paginationTrigger, index) => {
-          return pagintationTriggersArray[0] + index;
-        }
-      );
 
       return pagintationTriggers;
     }

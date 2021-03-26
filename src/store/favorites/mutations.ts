@@ -16,7 +16,7 @@ export const mutations: MutationTree<FavoritesState> = {
     state.favorites = state.favorites.filter(el => el.id !== payload);
   },
   [FAVORITES_MUTATION_TYPES.NEXT_PAGE](state) {
-    if (state.currentPage < 1) {
+    if (state.currentPage < state.pageCount) {
       state.currentPage += 1;
     }
   },
