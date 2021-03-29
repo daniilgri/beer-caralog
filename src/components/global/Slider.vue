@@ -3,11 +3,12 @@
     <h6 class="slider__value">{{ value }}</h6>
     <input
       ref="sliderLine"
-      v-model="value"
       class="slider__line"
       type="range"
       :min="min"
       :max="max"
+      :value="value"
+      @input="onInput"
     />
   </div>
 </template>
@@ -18,10 +19,19 @@ import Vue from "vue";
 export default Vue.extend({
   name: "Slider",
   props: {
-    value: { type: Number, required: true },
     min: { type: Number, required: true },
     max: { type: Number, required: true },
-    onChange: { type: Function, required: true }
+    value: { type: Number, required: true }
+  },
+  methods: {
+    onInput(event: InputEvent): void {
+      if (event.target) {
+        this.$emit(
+          "onSliderRangeInput",
+          +(event.target as HTMLInputElement).value
+        );
+      }
+    }
   }
 });
 </script>
