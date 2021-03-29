@@ -74,7 +74,6 @@ export default Vue.extend({
       }
 
       if (currentPage >= pageCount - visiblePagesThreshold + 1) {
-        console.log("2");
         pagintationTriggers = pagintationTriggersArray.map(
           (paginationTrigger, index) => {
             return pageCount - index;
