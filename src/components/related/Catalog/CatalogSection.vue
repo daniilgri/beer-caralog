@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="catalog-section">
+    <div v-if="!error" class="catalog-section">
       <div class="catalog-section__list">
         <CatalogItem
           v-for="beer in beers"
@@ -15,7 +15,7 @@
         <Loader />
       </div>
     </div>
-    <div v-if="error">Error</div>
+    <TextErrorMessage v-else :value="error" color="#7f94a594" />
   </div>
 </template>
 
@@ -31,10 +31,11 @@ import { FAVORITES_MUTATION_TYPES } from "@/store/favorites/mutationTypes";
 import { SingleBeer } from "@/store/beers/interfaces";
 // eslint-disable-next-line no-unused-vars
 import { SingleBeer as SingleFavoriteBeer } from "@/store/favorites/interfaces";
+import TextErrorMessage from "@/components/global/TextErrorMessage.vue";
 
 export default Vue.extend({
   name: "CatalogSection",
-  components: { CatalogItem, Loader },
+  components: { CatalogItem, Loader, TextErrorMessage },
   computed: {
     ...mapState("beers", {
       beers: "beers",
