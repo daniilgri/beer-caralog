@@ -4,6 +4,7 @@ import { RootState } from "@/store/interfaces";
 import { BeerDetailState } from "@/store/beerDetail/interfaces";
 
 import { BEER_DETAIL_MUTATION_TYPES } from "@/store/beerDetail/mutationTypes";
+import { NOTIFICATION_MUTATION_TYPES } from "@/store/notification/mutationTypes";
 
 export const actions: ActionTree<BeerDetailState, RootState> = {
   [BEER_DETAIL_MUTATION_TYPES.GET_BEER_REQUESTED]({ commit }, id) {
@@ -21,7 +22,11 @@ export const actions: ActionTree<BeerDetailState, RootState> = {
         commit(BEER_DETAIL_MUTATION_TYPES.GET_BEER_SUCCEED, data[0]);
       })
       .catch(error => {
-        commit(BEER_DETAIL_MUTATION_TYPES.GET_BEER_FAILED, error);
+        commit(
+          `notification/${NOTIFICATION_MUTATION_TYPES.TRIGGER_ERROR}`,
+          error,
+          { root: true }
+        );
       });
   }
 };

@@ -1,21 +1,18 @@
 <template>
-  <div>
-    <div v-if="!error" class="catalog-section">
-      <div class="catalog-section__list">
-        <CatalogItem
-          v-for="beer in beers"
-          :key="beer.id"
-          :item="beer"
-          :on-add-favorite="addFavorite"
-          :on-delete-favorite="deleteFavorite"
-          :is-favorite="isFavorite"
-        />
-      </div>
-      <div v-show="loading" class="catalog-section__scroll">
-        <Loader />
-      </div>
+  <div v-if="status === '' || status === 'succeed'" class="catalog-section">
+    <div class="catalog-section__list">
+      <CatalogItem
+        v-for="beer in beers"
+        :key="beer.id"
+        :item="beer"
+        :on-add-favorite="addFavorite"
+        :on-delete-favorite="deleteFavorite"
+        :is-favorite="isFavorite"
+      />
     </div>
-    <TextErrorMessage v-else :value="error" color="#7f94a594" />
+    <div v-show="loading" class="catalog-section__scroll">
+      <Loader />
+    </div>
   </div>
 </template>
 
@@ -31,20 +28,21 @@ import { FAVORITES_MUTATION_TYPES } from "@/store/favorites/mutationTypes";
 import { SingleBeer } from "@/store/beers/interfaces";
 // eslint-disable-next-line no-unused-vars
 import { SingleBeer as SingleFavoriteBeer } from "@/store/favorites/interfaces";
-import TextErrorMessage from "@/components/global/TextErrorMessage.vue";
 
 export default Vue.extend({
   name: "CatalogSection",
-  components: { CatalogItem, Loader, TextErrorMessage },
+  components: { CatalogItem, Loader },
   computed: {
     ...mapState("beers", {
       beers: "beers",
       loading: "loading",
-      error: "error",
       limit: "limit"
     }),
     ...mapState("favorites", {
       favorites: "favorites"
+    }),
+    ...mapState("notification", {
+      status: "status"
     })
   },
   beforeMount() {

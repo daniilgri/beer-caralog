@@ -7,15 +7,10 @@ import { initialState } from "@/store/beerDetail/index";
 export const mutations: MutationTree<BeerDetailState> = {
   [BEER_DETAIL_MUTATION_TYPES.GET_BEER_REQUESTED](state) {
     state.loading = true;
-    state.error = "";
     state.beer = initialState.beer;
   },
   [BEER_DETAIL_MUTATION_TYPES.GET_BEER_SUCCEED](state, payload) {
     state.loading = false;
     state.beer = payload;
-  },
-  [BEER_DETAIL_MUTATION_TYPES.GET_BEER_FAILED](state, payload) {
-    state.loading = false;
-    state.error = payload;
   }
 };

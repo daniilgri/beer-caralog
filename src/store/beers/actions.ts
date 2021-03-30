@@ -4,6 +4,7 @@ import { RootState } from "@/store/interfaces";
 import { BeersState } from "@/store/beers/interfaces";
 
 import { BEERS_MUTATION_TYPES } from "@/store/beers/mutationTypes";
+import { NOTIFICATION_MUTATION_TYPES } from "@/store/notification/mutationTypes";
 
 export const actions: ActionTree<BeersState, RootState> = {
   [BEERS_MUTATION_TYPES.GET_BEERS_INITIAL_REQUESTED]({ commit, state }) {
@@ -32,7 +33,11 @@ export const actions: ActionTree<BeersState, RootState> = {
         commit(BEERS_MUTATION_TYPES.GET_BEERS_INITIAL_SUCCEED, data);
       })
       .catch(error => {
-        commit(BEERS_MUTATION_TYPES.GET_BEERS_INITIAL_FAILED, error);
+        commit(
+          `notification/${NOTIFICATION_MUTATION_TYPES.TRIGGER_ERROR}`,
+          error,
+          { root: true }
+        );
       });
   },
   [BEERS_MUTATION_TYPES.GET_BEERS_NEXT_REQUESTED]({ commit, state }) {
@@ -61,7 +66,11 @@ export const actions: ActionTree<BeersState, RootState> = {
         commit(BEERS_MUTATION_TYPES.GET_BEERS_NEXT_SUCCEED, data);
       })
       .catch(error => {
-        commit(BEERS_MUTATION_TYPES.GET_BEERS_NEXT_FAILED, error);
+        commit(
+          `notification/${NOTIFICATION_MUTATION_TYPES.TRIGGER_ERROR}`,
+          error,
+          { root: true }
+        );
       });
   }
 };

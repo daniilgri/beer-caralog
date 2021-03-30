@@ -43,6 +43,5 @@ export interface SingleBeer {
 
 export interface BeerDetailState {
   loading: boolean;
-  error: string;
   beer: SingleBeer;
 }

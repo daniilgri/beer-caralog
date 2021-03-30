@@ -7,7 +7,6 @@ export const mutations: MutationTree<BeersState> = {
   [BEERS_MUTATION_TYPES.GET_BEERS_INITIAL_REQUESTED](state) {
     state.loading = true;
     state.beers = [];
-    state.error = "";
     state.page = 1;
   },
   [BEERS_MUTATION_TYPES.GET_BEERS_INITIAL_SUCCEED](state, payload) {

@@ -8,7 +8,6 @@ import { actions } from "@/store/beers/actions";
 
 const initialState: BeersState = {
   loading: false,
-  error: "",
   beers: [],
   count: 12,
   limit: 12,

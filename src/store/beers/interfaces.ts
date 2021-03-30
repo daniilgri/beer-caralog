@@ -7,7 +7,6 @@ export interface SingleBeer {
 
 export interface BeersState {
   loading: boolean;
-  error: string;
   beers: SingleBeer[];
   limit: number;
   query: string;
