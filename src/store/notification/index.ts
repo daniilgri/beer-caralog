@@ -6,7 +6,7 @@ import { mutations } from "@/store/notification/mutations";
 
 const initialState: NotificationState = {
   display: false,
-  status: "",
+  status: "succeed",
   message: ""
 };
 

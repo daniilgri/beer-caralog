@@ -1,29 +1,9 @@
 <template>
-  <div
-    v-show="display"
-    :class="{
-      'flash-notification': true,
-      'flash-notification_status_succeed': status === 'succeed',
-      'flash-notification_status_failed': status === 'failed'
-    }"
-  >
-    <p
-      :class="{
-        'flash-notification__text': true,
-        'flash-notification__text_status_succeed': status === 'succeed',
-        'flash-notification__text_status_failed': status === 'failed'
-      }"
-    >
+  <div v-show="display" :class="mainStyles">
+    <p :class="textStyles">
       {{ status }}
     </p>
-    <button
-      :class="{
-        'flash-notification__button': true,
-        'flash-notification__button_status_succeed': status === 'succeed',
-        'flash-notification__button_status_failed': status === 'failed'
-      }"
-      @click="hide"
-    >
+    <button :class="buttonStyles" @click="hide">
       Close
     </button>
   </div>
@@ -36,17 +16,47 @@ import { NOTIFICATION_MUTATION_TYPES } from "@/store/notification/mutationTypes"
 
 export default Vue.extend({
   name: "FlashNotification",
+  props: {
+    liveTime: {
+      type: Number,
+      default: 5000
+    }
+  },
   computed: {
     ...mapState("notification", {
       display: "display",
       status: "status",
       message: "message"
-    })
+    }),
+    mainStyles() {
+      return [
+        "flash-notification",
+        this.status === "failed"
+          ? "flash-notification_status_failed"
+          : "flash-notification_status_succeed"
+      ];
+    },
+    textStyles() {
+      return [
+        "flash-notification__text",
+        this.status === "failed"
+          ? "flash-notification__text_status_failed"
+          : "flash-notification__text_status_succeed"
+      ];
+    },
+    buttonStyles() {
+      return [
+        "flash-notification__button",
+        this.status === "failed"
+          ? "flash-notification__button_status_failed"
+          : "flash-notification__button_status_succeed"
+      ];
+    }
   },
   mounted() {
     setTimeout(() => {
       this.hide();
-    }, 5000);
+    }, this.liveTime);
   },
   methods: {
     ...mapMutations("notification", {
