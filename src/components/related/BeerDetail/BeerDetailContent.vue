@@ -1,5 +1,5 @@
 <template>
-  <div class="beer-detail-content">
+  <div v-if="status === '' || status === 'succeed'" class="beer-detail-content">
     <BeerDetailDescriptionArea
       v-if="!loading"
       :name="beer.name"
@@ -50,15 +50,16 @@ export default Vue.extend({
       required: true
     }
   },
-
   computed: {
     ...mapState("beerDetail", {
       loading: "loading",
-      error: "error",
       beer: "beer"
     }),
     ...mapState("favorites", {
       favorites: "favorites"
+    }),
+    ...mapState("notification", {
+      status: "status"
     }),
     isFavorite(): boolean {
       return (
@@ -67,11 +68,9 @@ export default Vue.extend({
       );
     }
   },
-
   created() {
     this.getBeer(this.id);
   },
-
   methods: {
     ...mapActions("beerDetail", {
       getBeer: BEER_DETAIL_MUTATION_TYPES.GET_BEER_REQUESTED

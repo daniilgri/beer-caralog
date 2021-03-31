@@ -6,6 +6,7 @@ import Favorites from "@/views/Favorites.vue";
 import BeerDetail from "@/views/BeerDetail.vue";
 import store from "@/store";
 import { SIDEBAR_MUTATION_TYPES } from "@/store/sidebar/mutationTypes";
+import { NOTIFICATION_MUTATION_TYPES } from "@/store/notification/mutationTypes";
 import { ROUTES } from "@/router/routes";
 
 Vue.use(VueRouter);
@@ -36,6 +37,7 @@ const router = new VueRouter({
 
 router.afterEach(() => {
   store.commit(`sidebar/${SIDEBAR_MUTATION_TYPES.CLOSE}`);
+  store.commit(`notification/${NOTIFICATION_MUTATION_TYPES.REFRESH}`);
 });
 
 export default router;

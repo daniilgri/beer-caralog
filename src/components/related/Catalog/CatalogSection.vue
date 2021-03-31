@@ -1,21 +1,18 @@
 <template>
-  <div>
-    <div class="catalog-section">
-      <div class="catalog-section__list">
-        <CatalogItem
-          v-for="beer in beers"
-          :key="beer.id"
-          :item="beer"
-          :on-add-favorite="addFavorite"
-          :on-delete-favorite="deleteFavorite"
-          :is-favorite="isFavorite"
-        />
-      </div>
-      <div v-show="loading" class="catalog-section__scroll">
-        <Loader />
-      </div>
+  <div v-if="status === '' || status === 'succeed'" class="catalog-section">
+    <div class="catalog-section__list">
+      <CatalogItem
+        v-for="beer in beers"
+        :key="beer.id"
+        :item="beer"
+        :on-add-favorite="addFavorite"
+        :on-delete-favorite="deleteFavorite"
+        :is-favorite="isFavorite"
+      />
     </div>
-    <div v-if="error">Error</div>
+    <div v-show="loading" class="catalog-section__scroll">
+      <Loader />
+    </div>
   </div>
 </template>
 
@@ -39,11 +36,13 @@ export default Vue.extend({
     ...mapState("beers", {
       beers: "beers",
       loading: "loading",
-      error: "error",
       limit: "limit"
     }),
     ...mapState("favorites", {
       favorites: "favorites"
+    }),
+    ...mapState("notification", {
+      status: "status"
     })
   },
   beforeMount() {

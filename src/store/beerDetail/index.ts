@@ -27,8 +27,7 @@ export const initialState: BeerDetailState = {
       mashTemp: [],
       twist: ""
     }
-  },
-  error: ""
+  }
 };
 
 export const beerDetail: Module<BeerDetailState, RootState> = {
